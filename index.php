@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
+        /* ส่วนของการตั้งค่าทั่วไป */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #121212;
@@ -20,6 +21,7 @@
             color: white;
         }
 
+        /* ส่วนของกล่องแชทหลัก        */
         .chat-container {
             width: 400px;
             background: #1e1e1e;
@@ -30,6 +32,7 @@
             flex-direction: column;
         }
 
+        /* ส่วนของหัวข้อแชท (Chat Header) */
         .chat-header {
             background: #333;
             color: white;
@@ -45,8 +48,10 @@
 
         .chat-header i {
             color: #00bfff;
+            /* กำหนดสีของไอคอนในส่วนหัวให้เป็นสีฟ้า */
         }
 
+        /* ส่วนของกล่องแชท (Chat Box) */
         .chat-box {
             height: 300px;
             overflow-y: auto;
@@ -59,6 +64,7 @@
             scrollbar-color: #888 #2b2b2b;
         }
 
+        /* ส่วนของข้อความในแชท         */
         .message {
             max-width: 75%;
             margin-bottom: 10px;
@@ -69,6 +75,7 @@
             display: inline-block;
         }
 
+        /* ข้อความที่ผู้ใช้ส่ง */
         .message.sent {
             align-self: flex-end;
             background: #007bff;
@@ -76,12 +83,14 @@
             text-align: right;
         }
 
+        /* ข้อความที่ได้รับ */
         .message.received {
             align-self: flex-start;
             background: #444;
             color: white;
         }
 
+        /* ส่วนของช่องกรอกข้อความ (Chat Input) */
         .chat-input {
             padding: 12px;
             background: #222;
@@ -91,6 +100,7 @@
             gap: 12px;
         }
 
+        /* ส่วนของช่องป้อนข้อความ */
         .chat-input input,
         .chat-input textarea {
             width: 94%;
@@ -104,6 +114,7 @@
             transition: all 0.3s ease-in-out;
         }
 
+        /* เอฟเฟกต์เมื่อโฟกัสที่ช่องป้อนข้อมูล */
         .chat-input input:focus,
         .chat-input textarea:focus {
             border-color: #00bfff;
@@ -133,7 +144,7 @@
         }
 
         .chat-input button:hover {
-            background:rgb(0, 3, 205);
+            background: rgb(0, 3, 205);
         }
     </style>
 </head>
@@ -157,44 +168,44 @@
     </div>
 
     <script>
-        function loadChat() {
-            $.ajax({
-                type: "POST",
-                url: "data.php",
-                data: {},
-                success: function(data) {
-                    $("#show").html(data);
-                    $("#show").scrollTop($("#show")[0].scrollHeight);
+        function loadChat() { // ฟังก์ชันแสดงข้อความในแชท
+            $.ajax({ // ส่งคำร้องขอไปยังไฟล์ data.php
+                type: "POST", // รูปแบบการส่งคำร้องขอ
+                url: "data.php", // ไฟล์ที่จะส่งคำร้องขอไป
+                data: {}, // ข้อมูลที่จะส่งไปกับคำร้องขอ
+                success: function(data) { // ถ้าสำเร็จให้ทำงานในส่วนนี้
+                    $("#show").html(data); // แสดงข้อความในแชท
+                    $("#show").scrollTop($("#show")[0].scrollHeight); // ลากแถบเลื่อนลงด้านล่าง
                 },
-                dataType: "html"
+                dataType: "html" // รูปแบบของข้อมูลที่ส่งกลับมา
             });
         }
 
-        loadChat();
-        setInterval(loadChat, 5000);
+        loadChat(); // เรียกใช้ฟังก์ชันแสดงข้อความในแชท
+        setInterval(loadChat, 5000); // รีเฟรชข้อความในแชททุก 5 วินาที
 
-        $("#form").submit(function(e) {
-            e.preventDefault();
-            var formData = $("#form").serialize();
+        $("#form").submit(function(e) { // เมื่อมีการส่งฟอร์ม
+            e.preventDefault(); // หยุดการทำงานของฟอร์ม
+            var formData = $("#form").serialize(); // ดึงข้อมูลจากฟอร์ม
             $.ajax({
                 type: "POST",
                 url: "insert.php",
-                data: formData,
-                success: function(response) {
-                    if ($.trim(response) == 'success') {
-                        $("#txt").val("");
-                        loadChat();
+                data: formData, // ส่งข้อมูลไปที่ไฟล์ insert.php
+                success: function(response) { // ถ้าสำเร็จให้ทำงานในส่วนนี้
+                    if ($.trim(response) == 'success') { // ถ้าสำเร็จ
+                        $("#txt").val(""); // ล้างข้อความในช่องป้อนข้อความ
+                        loadChat(); // แสดงข้อความใหม่
                     } else {
-                        alert("❌ ส่งข้อความไม่สำเร็จ");
+                        alert("❌ ส่งข้อความไม่สำเร็จ"); // ถ้าไม่สำเร็จให้แจ้งเตือน
                     }
                 },
-                dataType: "text"
+                dataType: "text" // รูปแบบของข้อมูลที่ส่งกลับมา
             });
         });
 
-        $("#txt").on("input", function() {
-            this.style.height = "auto";
-            this.style.height = (this.scrollHeight) + "px";
+        $("#txt").on("input", function() { // ตรวจสอบข้อความที่พิมพ์
+            this.style.height = "auto"; // กำหนดความสูงของ textarea ให้เป็นค่าเริ่มต้น
+            this.style.height = (this.scrollHeight) + "px"; // กำหนดความสูงของ textarea ให้เท่ากับความสูงของข้อความที่พิมพ์
         });
     </script>
 
