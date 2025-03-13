@@ -168,6 +168,7 @@
     </div>
 
     <script>
+        //  JavaScript (jQuery) AJAX
         function loadChat() { // ฟังก์ชันแสดงข้อความในแชท
             $.ajax({ // ส่งคำร้องขอไปยังไฟล์ data.php
                 type: "POST", // รูปแบบการส่งคำร้องขอ
