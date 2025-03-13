@@ -1,0 +1,7 @@
+<!-- ตารางฐานข้อมูล -->
+CREATE TABLE chat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    c_name VARCHAR(255) NOT NULL,
+    c_txt TEXT NOT NULL,
+    c_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
