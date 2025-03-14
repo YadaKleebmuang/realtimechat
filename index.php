@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realtime Chat Room</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> <!-- เรียกใช้งานไอคอน -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!-- เรียกใช้งาน jQuery -->
     <style>
         /* ส่วนของการตั้งค่าทั่วไป */
         body {
