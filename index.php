@@ -64,7 +64,7 @@
             scrollbar-color: #888 #2b2b2b;
         }
 
-        /* ส่วนของข้อความในแชท         */
+        /* ส่วนของข้อความในแชท */
         .message {
             max-width: 75%;
             margin-bottom: 10px;
