@@ -183,7 +183,7 @@
         }
 
         loadChat(); // เรียกใช้ฟังก์ชันแสดงข้อความในแชท
-        setInterval(loadChat, 5000); // รีเฟรชข้อความในแชททุก 5 วินาที
+        setInterval(loadChat, 2000); // รีเฟรชข้อความในแชททุก 2 วินาที
 
         $("#form").submit(function(e) { // เมื่อมีการส่งฟอร์ม
             e.preventDefault(); // หยุดการทำงานของฟอร์ม
@@ -204,10 +204,6 @@
             });
         });
 
-        $("#txt").on("input", function() { // ตรวจสอบข้อความที่พิมพ์
-            this.style.height = "auto"; // กำหนดความสูงของ textarea ให้เป็นค่าเริ่มต้น
-            this.style.height = (this.scrollHeight) + "px"; // กำหนดความสูงของ textarea ให้เท่ากับความสูงของข้อความที่พิมพ์
-        });
     </script>
 
 </body>
